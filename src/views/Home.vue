@@ -1,18 +1,47 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="loading" class="loading">
+      loading...
+    </div>
+    <pre>Next launch: {{nextLaunch}}</pre>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import dayjs from 'dayjs';
+
+var localizedFormat = require('dayjs/plugin/localizedFormat')
+dayjs.extend(localizedFormat)
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      loading: true,
+      nextLaunch: null,
+    }
+  },
+  created() {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.loading = true;
+
+      fetch('https://api.spacexdata.com/v3/launches/next')
+        .then((response) => {
+          this.loading = false;
+          response.json().then((data) => {
+            this.nextLaunch = dayjs(data.launch_date_unix * 1000).format('LLL');
+          });
+        })
+        .catch((err) => {
+          console.log('Fetch error :', err);
+        });
+    }
   }
 }
 </script>
