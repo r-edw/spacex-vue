@@ -1,20 +1,9 @@
 <template>
-  <div class="home">
-    <div v-if="loading" class="loading">
-      loading...
-    </div>
-    <span>Next launch: {{nextLaunch}}</span>
-  </div>
 </template>
 
 <script>
-import dayjs from 'dayjs';
-
-var localizedFormat = require('dayjs/plugin/localizedFormat')
-dayjs.extend(localizedFormat)
-
 export default {
-  name: 'Home',
+  name: 'NextLaunch',
   data() {
     return {
       loading: true,
