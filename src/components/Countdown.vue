@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <span>Next launch: {{launch}}</span>
-  </div>
+  <div>{{launch}}</div>
 </template>
 
 <script>
@@ -11,12 +9,12 @@ var localizedFormat = require('dayjs/plugin/localizedFormat')
 dayjs.extend(localizedFormat)
 
 export default {
-  name: 'Home',
-  props: ['nextLaunchData'],
   computed: {
     launch() {
-      return dayjs(this.nextLaunchData.launch_date_unix * 1000).format('LLL');
+      return dayjs(this.timestamp * 1000).format('LL')
     }
   },
+  name: 'Countdown',
+  props: ['timestamp']
 }
 </script>

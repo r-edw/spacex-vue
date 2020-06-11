@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Navigation class="mb-6" />
+    <Navigation 
+      v-bind:nextLaunchData="nextLaunchData"
+      v-bind:timestamp="timestamp" 
+      class="mb-6" 
+    />
     <router-view/>
   </div>
 </template>
@@ -12,6 +16,37 @@ export default {
   name: 'App',
   components: {
     Navigation
+  },
+  data() {
+    return {
+      loading: true,
+      nextLaunchData: null,
+      timestamp: null,
+    }
+  },
+  created() {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.loading = true;
+
+      fetch('https://api.spacexdata.com/v3/launches/next')
+        .then((response) => {
+          this.loading = false;
+          response.json().then((data) => {
+            //
+            this.timestamp = data.launch_date_unix;
+            //state management?
+            this.nextLaunchData = data;
+          });
+        })
+        .catch((err) => {
+          console.log('Fetch error :', err);
+        });
+    }
   }
 }
 </script>
