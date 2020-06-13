@@ -1,24 +1,38 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Launches from "../views/Launches.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    props: true,
-    component: Home
+    name: "Launches",
+    component: Launches
   },
   {
-    path: "/launches",
-    name: "Launches",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/launch/:id",
+    name: "ViewLaunch",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Launches.vue")
+      import(/* webpackChunkName: "about" */ "../views/ViewLaunch.vue")
+  },
+  {
+    path: "/launch_sites",
+    name: "LaunchSites",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/LaunchSites.vue")
+  },
+  {
+    path: "/launch_site/:id",
+    name: "ViewLaunchSite",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ViewLaunchSite.vue")
+  },
+  {
+    path: "/rockets",
+    name: "Rockets",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Rockets.vue")
   }
 ];
 
