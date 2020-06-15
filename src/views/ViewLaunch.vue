@@ -1,32 +1,31 @@
 <template>
   <div class="launch">
     <div v-if="loading">Loading launch...</div>
-    <div v-else>
-      <div class="max-w-sm w-full lg:max-w-full lg:flex border rounded-md my-2 p-2">
-        <div class="text-left">
-          <div class="mb-4 flex">
-            <div>
-              {{data.mission_name}}
-            </div>
-            <div class="ml-auto">
-              {{launchDate}}
-            </div>
-          </div>
+    <div v-else class="max-w-sm w-full lg:max-w-full lg:flex border rounded-md my-2 p-2">
+      <div class="text-left">
+        <div class="mb-2 flex">
           <div>
-            <div>{{data.details}}</div>
+            {{data.mission_name}}
           </div>
-          <div class="my-4">
-            <router-link v-bind:to="launchUrl"></router-link>
-            <div>Launch Site: 
-              <span>
-                <router-link v-bind:to="siteUrl">
-                  <a>{{data.launch_site.site_name_long}}</a>
-                </router-link>
-              </span>
-            </div>
+        </div>
+        <div class="mb-2">
+          {{launchDate}}
+        </div>
+        <div>
+          <div>{{data.details}}</div>
+        </div>
+        <div class="my-4">
+          <router-link v-bind:to="launchUrl"></router-link>
+          <div>Launch Site: 
+            <span>
+              <router-link v-bind:to="siteUrl">
+                <a>{{data.launch_site.site_name_long}}</a>
+              </router-link>
+            </span>
           </div>
         </div>
       </div>
+      <img class="h-64 w-64 m-auto lg:ml-auto lg:mr-0" v-bind:src="data.links.mission_patch"/>
     </div>
   </div>
 </template>

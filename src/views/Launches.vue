@@ -1,8 +1,8 @@
 <template>
   <div class="launches">
     <NextLaunch /> 
-    <h1 class="text-left font-semibold">Upcoming launches</h1>
-    <div v-if="loading">Loading upcoming launches...</div>
+    <h1 class="text-left font-semibold">Previous launches</h1>
+    <div v-if="loading">Loading previous launches...</div>
     <div v-else>
       <div>
         <ul>
@@ -40,7 +40,7 @@ export default {
     fetchData() {
       this.loading = true;
 
-      fetch('https://api.spacexdata.com/v3/launches/upcoming')
+      fetch('https://api.spacexdata.com/v3/launches/past')
         .then((response) => {
           this.loading = false;
           response.json().then((data) => {
