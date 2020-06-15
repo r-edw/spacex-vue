@@ -6,24 +6,56 @@
 import dayjs from 'dayjs';
 
 let duration = require('dayjs/plugin/duration');
-dayjs.extend(duration)
+dayjs.extend(duration);
 
 export default {
+  name: 'Countdown',
+  props: ['timestamp'],
+  data() {
+    return {
+      timeInterval: null
+    };
+  },
   computed: {
     diff() {
-      const duration = dayjs.duration(dayjs(this.timestamp * 1000).diff(dayjs()));
+      if (this.timeInterval === 0) return;
 
-      console.log(duration);
+      const milli = (this.timestamp * 1000);
+
+      if (dayjs(milli).isBefore(dayjs())) {
+        return {
+          days: '00',
+          hours: '00',
+          minutes: '00',
+          seconds: '00',
+        }
+      }
+
+      const duration = dayjs.duration(dayjs(milli).diff(dayjs()));
+
+      const days = duration.days();
+      const hours = duration.hours();
+      const minutes = duration.minutes();
+      const seconds = duration.seconds();
       
       return {
-        days: duration.days(),
-        hours: duration.hours(),
-        minutes: duration.minutes(),
-        seconds: duration.seconds(),
+        days: days < 10 ? `0${days}` : days,
+        hours: hours < 10 ? `0${hours}` : hours,
+        minutes: minutes < 10 ? `0${minutes}` : minutes,
+        seconds: seconds < 10 ? `0${seconds}` : seconds,
       }
     }
   },
-  name: 'Countdown',
-  props: ['timestamp']
+  methods: {
+    startTimer() {
+      setInterval(() => {
+        this.timeInterval = this.timeInterval + 1;
+      }, 1000);
+    },
+  },
+
+  mounted() {
+    this.startTimer();
+  },
 }
 </script>
