@@ -40,7 +40,7 @@ export default {
     fetchData() {
       this.loading = true;
 
-      fetch('https://api.spacexdata.com/v3/launches/past')
+      fetch('https://api.spacexdata.com/v3/launches/past?sort=flight_number&order=desc')
         .then((response) => {
           this.loading = false;
           response.json().then((data) => {

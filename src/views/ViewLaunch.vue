@@ -11,11 +11,25 @@
         <div class="mb-2">
           {{launchDate}}
         </div>
-        <div>
+        <div class="mb-2">
           <div>{{data.details}}</div>
         </div>
+        <div class="mb-2" v-if="data.launch_success">
+          Outcome: <span class="launch__success">SUCCESS</span>
+        </div>
+        <div class="mb-2" v-else>
+          Outcome: <span class="launch__failure">UNSUCCESSFUL</span>
+        </div>
         <div class="my-4">
-          <router-link v-bind:to="launchUrl"></router-link>
+          <div>Rocket: 
+            <span>
+              <router-link v-bind:to="rocketUrl">
+                <a>{{data.rocket.rocket_name}}</a>
+              </router-link>
+            </span>
+          </div>
+        </div>
+        <div class="my-4">
           <div>Launch Site: 
             <span>
               <router-link v-bind:to="siteUrl">
@@ -23,6 +37,15 @@
               </router-link>
             </span>
           </div>
+        </div>
+        <div v-if="data.links.wikipedia" class="mb-2 launch__links">
+          <a rel="noopener noreferrer" target="_blank" v-bind:href="data.links.wikipedia">Wikipedia</a>
+        </div>
+        <div v-if="data.links.article_link" class="mb-2 launch__links">
+          <a rel="noopener noreferrer" target="_blank" v-bind:href="data.links.article_link">Article</a>
+        </div>
+        <div v-if="data.links.reddit_launch" class="mb-2 launch__links">
+          <a rel="noopener noreferrer" target="_blank" v-bind:href="data.links.reddit_launch">Reddit launch thread</a>
         </div>
       </div>
       <img class="h-64 w-64 m-auto lg:ml-auto lg:mr-0" v-bind:src="data.links.mission_patch"/>
@@ -50,7 +73,10 @@ export default {
     },
     siteUrl() {
       return `/launch_site/${this.data.launch_site.site_id}`;
-    }
+    },
+    rocketUrl() {
+      return `/rocket/${this.data.rocket.rocket_id}`;
+    },
   },
   created() {
     // fetch the data when the view is created and the data is
@@ -76,3 +102,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .launch__success {
+    color: #00FF00;
+  }
+  .launch__failure {
+    color: #BF0000;
+  }
+</style>

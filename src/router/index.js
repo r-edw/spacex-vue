@@ -33,6 +33,12 @@ const routes = [
     name: "Rockets",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Rockets.vue")
+  },
+  {
+    path: "/rocket/:id",
+    name: "ViewRocket",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ViewRocket.vue")
   }
 ];
 
