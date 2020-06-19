@@ -1,5 +1,5 @@
 <template>
-  <div>{{diff.days}}:{{diff.hours}}:{{diff.minutes}}:{{diff.seconds}}</div>
+  <div>T - {{diff.days}}:{{diff.hours}}:{{diff.minutes}}:{{diff.seconds}}</div>
 </template>
 
 <script>

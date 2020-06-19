@@ -1,19 +1,40 @@
 <template>
-  <router-link v-bind:to="launchUrl">
-    <div class="max-w-sm w-full lg:max-w-full lg:flex border-b my-2 p-2">
-      <span>{{launch.mission_name}}</span>
-    </div>
-  </router-link>
+  <div class="launch-summary hover:bg-white hover:text-black transition-colors ease-in duration-300">
+    <router-link v-bind:to="launchUrl">
+      <div class="max-w-sm w-full lg:max-w-full lg:flex border-b p-4">
+        <div class="lg-flex text-left flex-col">
+          <div># {{launch.flight_number}}</div>
+          <div>{{launch.mission_name}}</div>
+        </div>
+        <div class="ml-auto">
+          <span>{{launchDate}}</span>
+        </div>
+      </div>
+    </router-link>
+  </div>
+
 </template>
 
 <script>
+import dayjs from 'dayjs';
+
 export default {
   name: 'LaunchSummary',
   props: ['launch'],
   computed: {
+    launchDate() {
+      return dayjs(this.launch?.launch_date_unix * 1000).format('LLL');
+    },
     launchUrl() {
-      return `/launch/${this.launch.flight_number}`;
+      return `/launch/${this.launch?.flight_number}`;
     }
   }
 }
 </script>
+
+<style scoped>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>

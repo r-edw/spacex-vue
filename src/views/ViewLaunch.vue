@@ -1,12 +1,12 @@
 <template>
   <div class="launch">
     <div v-if="loading">Loading launch...</div>
-    <div v-else class="max-w-sm w-full lg:max-w-full lg:flex border rounded-md my-2 p-2">
+    <section v-else class="max-w-sm w-full lg:max-w-full lg:flex rounded-md my-2 p-2 ml-auto mr-auto">
       <div class="text-left">
         <div class="mb-2 flex">
-          <div>
+          <h2>
             {{data.mission_name}}
-          </div>
+          </h2>
         </div>
         <div class="mb-2">
           {{launchDate}}
@@ -48,8 +48,8 @@
           <a rel="noopener noreferrer" target="_blank" v-bind:href="data.links.reddit_launch">Reddit launch thread</a>
         </div>
       </div>
-      <img class="h-64 w-64 m-auto lg:ml-auto lg:mr-0" v-bind:src="data.links.mission_patch"/>
-    </div>
+      <img class="h-64 w-64 m-auto lg:ml-auto lg:mr-0 lg:mt-0" v-bind:src="data.links.mission_patch"/>
+    </section>
   </div>
 </template>
 
@@ -89,10 +89,9 @@ export default {
 
       fetch(`https://api.spacexdata.com/v3/launches/${this.$route.params.id}`)
         .then((response) => {
-          this.loading = false;
           response.json().then((data) => {
-            //remove
             this.data = data;
+            this.loading = false;
           });
         })
         .catch((err) => {

@@ -1,11 +1,11 @@
 <template>
-  <div class="rockets">
-    <h1 class="font-semibold">Rockets</h1>
+  <div class="rockets mb-4">
+    <h1 class="text-left">Rockets</h1>
     <div v-if="loading">Loading rockets...</div>
     <div v-else>
       <ul>
         <li v-for="rocket in rockets" :key="rocket.id">
-          {{rocket.rocket_name}}
+          <RocketSummary v-bind:rocket="rocket" />
         </li>
         <!-- <Launch v-for="launch in launches" :key="launch.flight_number" v-bind="launch" /> -->
       </ul>
@@ -14,8 +14,13 @@
 </template>
 
 <script>
+import RocketSummary from '../components/RocketSummary';
+
 export default {
   name: "Rockets",
+  components: {
+    RocketSummary,
+  },
   data() {
     return {
       loading: true,

@@ -1,9 +1,8 @@
 <template>
   <div class="launches">
     <NextLaunch /> 
-    <h1 class="text-left font-semibold">Previous launches</h1>
-    <div v-if="loading">Loading previous launches...</div>
-    <div v-else>
+    <h1 class="text-left">Previous launches</h1>
+    <div>
       <div>
         <ul>
           <li v-for="launch in launches" :key="launch.flight_number">
@@ -12,6 +11,7 @@
         </ul>
       </div>
     </div>
+    <div v-if="loading" class="m-8">Loading previous launches...</div>
   </div>
 </template>
 
@@ -27,8 +27,11 @@ export default {
   name: 'Launches',
   data() {
     return {
+      end: false,
       loading: true,
-      launches: null,
+      launches: [],
+      limit: 10,
+      offset: 0,
     }
   },
   created() {
@@ -36,20 +39,46 @@ export default {
     // already being observed
     this.fetchData()
   },
+  mounted() {
+    this.scroll(this.fetchData, this.loading);
+  },
   methods: {
     fetchData() {
       this.loading = true;
 
-      fetch('https://api.spacexdata.com/v3/launches/past?sort=flight_number&order=desc')
+      if (this.end) {
+        return;
+      }
+
+      fetch(`https://api.spacexdata.com/v3/launches/past?sort=flight_number&order=desc&limit=${this.limit}&offset=${this.offset}`)
         .then((response) => {
-          this.loading = false;
           response.json().then((data) => {
-            this.launches = data;
+            if (data.length < 10) {
+              this.end = true;
+            }
+
+            this.launches = [...this.launches, ...data];
+            this.offset = this.offset + this.limit
+            this.loading = false;
+            this.scroll(this.fetchData, this.loading);
           });
         })
         .catch((err) => {
           console.log('Fetch error :', err);
         });
+    },
+    scroll(fetchData, loading) {
+      window.onscroll = () => {
+        let bottomOfWindow = Math.ceil(document.documentElement.scrollHeight - document.documentElement.scrollTop) === document.documentElement.clientHeight
+
+        if (bottomOfWindow) {
+          if (loading) {
+            return;
+          }
+
+          fetchData();
+        }
+      };
     }
   }
 }
