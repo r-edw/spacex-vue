@@ -39,6 +39,12 @@ const routes = [
     name: "ViewRocket",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ViewRocket.vue")
+  },
+  {
+    path: "*",
+    name: "NotFound",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/NotFound.vue")
   }
 ];
 

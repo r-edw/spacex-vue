@@ -1,15 +1,25 @@
 <template>
-  <div class="launch-sites">
+  <div class="launch-sites mb-4">
+    <h1 class="text-left mb-2">Launch Sites</h1>
     <div v-if="loading">Loading launch sites...</div>
     <div v-else>
-      <pre>{{data}}</pre>
+      <ul>
+        <li v-for="site in data" :key="site.site_id">
+          <LaunchSiteSummary v-bind:site="site" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import LaunchSiteSummary from '../components/LaunchSiteSummary';
+
 export default {
   name: 'LaunchSites',
+  components: {
+    LaunchSiteSummary
+  },
   data() {
     return {
       loading: true,

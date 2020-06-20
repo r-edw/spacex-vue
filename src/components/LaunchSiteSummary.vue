@@ -1,9 +1,9 @@
 <template>
   <div class="launch-summary hover:bg-white hover:text-black transition-colors ease-in duration-300">
-    <router-link v-bind:to="rocketUrl">
+    <router-link v-bind:to="siteUrl">
       <div class="max-w-sm w-full lg:max-w-full lg:flex p-4">
         <div class="lg-flex text-left flex-col">
-          <h2>{{rocket.rocket_name}}</h2>
+          <h2>{{site.site_name_long}}</h2>
         </div>
       </div>
     </router-link>
@@ -13,11 +13,11 @@
 
 <script>
 export default {
-  name: 'RocketSummary',
-  props: ['rocket'],
+  name: 'LaunchSiteSummary',
+  props: ['site'],
   computed: {
-    rocketUrl() {
-      return `/rocket/${this.rocket?.rocket_id}`;
+    siteUrl() {
+      return `/launch_site/${this.site?.site_id}`;
     }
   }
 }

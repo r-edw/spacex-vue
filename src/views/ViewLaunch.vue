@@ -4,9 +4,9 @@
     <section v-else class="max-w-sm w-full lg:max-w-full lg:flex rounded-md my-2 p-2 ml-auto mr-auto">
       <div class="text-left">
         <div class="mb-2 flex">
-          <h2>
+          <h1>
             {{data.mission_name}}
-          </h2>
+          </h1>
         </div>
         <div class="mb-2">
           {{launchDate}}

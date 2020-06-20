@@ -1,13 +1,12 @@
 <template>
   <div class="rockets mb-4">
-    <h1 class="text-left">Rockets</h1>
+    <h1 class="text-left mb-2">Rockets</h1>
     <div v-if="loading">Loading rockets...</div>
     <div v-else>
       <ul>
         <li v-for="rocket in rockets" :key="rocket.id">
           <RocketSummary v-bind:rocket="rocket" />
         </li>
-        <!-- <Launch v-for="launch in launches" :key="launch.flight_number" v-bind="launch" /> -->
       </ul>
     </div>
   </div>

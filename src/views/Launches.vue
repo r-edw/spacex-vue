@@ -1,7 +1,7 @@
 <template>
   <div class="launches">
     <NextLaunch /> 
-    <h1 class="text-left">Previous launches</h1>
+    <h1 class="text-left mb-2">Previous launches</h1>
     <div>
       <div>
         <ul>
