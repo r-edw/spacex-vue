@@ -43,6 +43,11 @@ export default {
     this.scroll(this.fetchData, this.loading);
   },
   methods: {
+    fetchMore() {
+      if (this.loading || this.end) return;
+
+      this.fetchData();
+    },
     fetchData() {
       this.loading = true;
 
@@ -67,16 +72,12 @@ export default {
           console.log('Fetch error :', err);
         });
     },
-    scroll(fetchData, loading) {
+    scroll() {
       window.onscroll = () => {
         let bottomOfWindow = Math.ceil(document.documentElement.scrollHeight - document.documentElement.scrollTop) <= document.documentElement.clientHeight
 
         if (bottomOfWindow) {
-          if (loading) {
-            return;
-          }
-
-          fetchData();
+          this.fetchMore();
         }
       };
     }
