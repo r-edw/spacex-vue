@@ -1,5 +1,7 @@
 # spacex-vue
 
+Simple Vue.js application for viewing SpaceX data from [SpaceX API](https://github.com/r-spacex/SpaceX-API)
+
 ## Project setup
 ```
 yarn install
