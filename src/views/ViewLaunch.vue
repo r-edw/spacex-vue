@@ -9,6 +9,7 @@
           </h1>
         </div>
         <div class="mb-2">
+          <font-awesome-icon class="mr-1" icon="calendar-alt" />
           {{launchDate}}
         </div>
         <div class="mb-2">

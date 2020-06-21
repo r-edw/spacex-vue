@@ -6,7 +6,7 @@
       <div class="flex">
         <div class="flex flex-col">
           <div class="flex">
-            <h2 class="my-1">{{launch}}</h2>
+            <h2 class="my-1"><font-awesome-icon class="mr-2" icon="calendar-alt" />{{launch}}</h2>
             <div class="ml-auto my-1">
               <Countdown v-bind:timestamp="data.launch_date_unix" />
             </div>

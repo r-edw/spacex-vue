@@ -13,38 +13,37 @@ const routes = [
   {
     path: "/launch/:id",
     name: "ViewLaunch",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ViewLaunch.vue")
+    component: () => import("../views/ViewLaunch.vue")
   },
   {
     path: "/launch_sites",
     name: "LaunchSites",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/LaunchSites.vue")
+    component: () => import("../views/LaunchSites.vue")
   },
   {
     path: "/launch_site/:id",
     name: "ViewLaunchSite",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ViewLaunchSite.vue")
+    component: () => import("../views/ViewLaunchSite.vue")
   },
   {
     path: "/rockets",
     name: "Rockets",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Rockets.vue")
+    component: () => import("../views/Rockets.vue")
   },
   {
     path: "/rocket/:id",
     name: "ViewRocket",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ViewRocket.vue")
+    component: () => import("../views/ViewRocket.vue")
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue")
   },
   {
     path: "*",
     name: "NotFound",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/NotFound.vue")
+    component: () => import("../views/NotFound.vue")
   }
 ];
 

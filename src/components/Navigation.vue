@@ -16,6 +16,14 @@
         <button v-on:click="closeOpen" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
           <router-link to="/launch_sites">LAUNCH SITES</router-link>
         </button>
+        <button v-on:click="closeOpen" class="lg:hidden block mt-4 lg:mt-0 text-teal-200 hover:text-white mr-4">
+          <router-link to="/about">ABOUT</router-link>
+        </button>
+      </div>
+      <div class="ml-auto hidden lg:flex">
+        <button>
+          <router-link to="/about"><font-awesome-icon icon="info-circle" /></router-link>
+        </button>
       </div>
     </div>
   </nav>
