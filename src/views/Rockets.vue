@@ -39,7 +39,7 @@ export default {
         .then((response) => {
           this.loading = false;
           response.json().then((data) => {
-            this.rockets = data;
+            this.rockets = data.reverse();
           });
         })
         .catch((err) => {

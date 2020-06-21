@@ -5,16 +5,21 @@
     </div>
     <section v-else class="max-w-sm w-full lg:max-w-full lg:flex rounded-md my-2 p-2 ml-auto mr-auto">
       <div class="text-left">
-        <div class="mb-2 flex">
-          <h1>
-            {{data.site_name_long}}
-          </h1>
-        </div>
+        <h1 class="mb-2">
+          {{data.site_name_long}} ({{data.name}})
+        </h1>
         <div class="mb-2">
           {{data.details}}
         </div>
+        <div class="mb-2 flex flex-col">
+          <span>Attempted launches: {{data.attempted_launches}}</span>
+          <span>Successful launches: {{data.successful_launches}}</span>
+        </div>
         <div v-if="data.wikipedia" class="mb-2 rocket__links">
           <a rel="noopener noreferrer" target="_blank" v-bind:href="data.wikipedia">Wikipedia</a>
+        </div>
+        <div v-if="data.location" class="mb-2">
+          <a rel="noopener noreferrer" target="_blank" v-bind:href="`https://www.google.com/maps/place/${data.location.latitude},${data.location.longitude}`">Google Maps</a>
         </div>
       </div>
     </section>
