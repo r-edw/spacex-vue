@@ -3,7 +3,7 @@
     <div v-if="loading">
       <span>Loading launch site...</span>
     </div>
-    <section v-else class="max-w-sm w-full lg:max-w-full lg:flex rounded-md my-2 p-2 ml-auto mr-auto">
+    <section v-else class="w-full lg:max-w-full lg:flex rounded-md mb-2 ml-auto mr-auto">
       <div class="text-left">
         <h1 class="mb-2">
           {{data.site_name_long}} ({{data.name}})

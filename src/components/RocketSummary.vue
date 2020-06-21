@@ -1,7 +1,7 @@
 <template>
   <div class="launch-summary hover:bg-white hover:text-black transition-colors ease-in duration-300">
     <router-link v-bind:to="rocketUrl">
-      <div class="max-w-sm w-full lg:max-w-full lg:flex p-4">
+      <div class="w-full lg:max-w-full lg:flex p-4">
         <div class="lg-flex text-left flex-col">
           <h2>{{rocket.rocket_name}}</h2>
         </div>

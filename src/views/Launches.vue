@@ -69,7 +69,7 @@ export default {
     },
     scroll(fetchData, loading) {
       window.onscroll = () => {
-        let bottomOfWindow = Math.ceil(document.documentElement.scrollHeight - document.documentElement.scrollTop) === document.documentElement.clientHeight
+        let bottomOfWindow = Math.ceil(document.documentElement.scrollHeight - document.documentElement.scrollTop) <= document.documentElement.clientHeight
 
         if (bottomOfWindow) {
           if (loading) {

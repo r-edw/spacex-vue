@@ -1,7 +1,7 @@
 <template>
   <div class="launch-summary hover:bg-white hover:text-black transition-colors ease-in duration-300">
     <router-link v-bind:to="launchUrl">
-      <div class="max-w-sm w-full lg:max-w-full lg:flex border-b p-4">
+      <div class="w-full max-w-full flex border-b p-4">
         <div class="lg-flex text-left flex-col">
           <div># {{launch.flight_number}}</div>
           <div>{{launch.mission_name}}</div>

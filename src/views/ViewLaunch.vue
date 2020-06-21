@@ -1,7 +1,7 @@
 <template>
   <div class="launch">
     <div v-if="loading">Loading launch...</div>
-    <section v-else class="max-w-sm w-full lg:max-w-full lg:flex rounded-md my-2 p-2 ml-auto mr-auto">
+    <section v-else class="w-full lg:max-w-full lg:flex rounded-md mb-2 ml-auto mr-auto">
       <div class="text-left">
         <div class="mb-2 flex">
           <h1>
