@@ -4,29 +4,27 @@
 		<div v-if="loading" class="text-center p-4">Loading next launch...</div>
 		<div v-else>
 			<div class="flex">
-				<div class="flex flex-col">
+				<div class="flex flex-col w-full">
 					<div class="flex">
 						<h2 class="my-1">
 							<font-awesome-icon class="mr-2" icon="calendar-alt" />{{ launch }}
 						</h2>
 						<div class="ml-auto my-1">
-							<Countdown v-bind:timestamp="data.launch_date_unix" />
+							<Countdown v-bind:timestamp="data.date_unix" />
 						</div>
 					</div>
-					<h3 class="my-1">{{ data.mission_name }}</h3>
+					<h3 class="my-1">{{ data.name }}</h3>
 					<span class="my-2">
 						{{ data.details }}
 					</span>
 					<span>
-						Rocket:
 						<router-link v-bind:to="rocketUrl">
-							<a>{{ data.rocket.rocket_name }}</a>
+							<a>Rocket</a>
 						</router-link>
 					</span>
 					<span>
-						Launch Site:
-						<router-link v-bind:to="siteUrl">
-							<a>{{ data.launch_site.site_name_long }}</a>
+						<router-link v-bind:to="launchpadUrl">
+							<a>Launchpad</a>
 						</router-link>
 					</span>
 				</div>
@@ -49,13 +47,13 @@ export default {
 	},
 	computed: {
 		launch() {
-			return dayjs(this.data?.launch_date_unix * 1000).format("LLL");
+			return dayjs(this.data?.date_unix * 1000).format("LLL");
 		},
-		siteUrl() {
-			return `/launch_site/${this.data.launch_site.site_id}`;
+		launchpadUrl() {
+			return `/launchpad/${this.data.launchpad}`;
 		},
 		rocketUrl() {
-			return `/rocket/${this.data.rocket.rocket_id}`;
+			return `/rocket/${this.data.rocket}`;
 		},
 	},
 	data() {
@@ -73,7 +71,7 @@ export default {
 		fetchData() {
 			this.loading = true;
 
-			fetch("https://api.spacexdata.com/v3/launches/next")
+			fetch("https://api.spacexdata.com/v5/launches/next")
 				.then((response) => {
 					response.json().then((data) => {
 						this.data = data;

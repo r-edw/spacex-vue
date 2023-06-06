@@ -4,7 +4,7 @@
 		<div v-if="loading">Loading launch sites...</div>
 		<div v-else>
 			<ul>
-				<li v-for="site in data" :key="site.site_id">
+				<li v-for="site in data" :key="site.id">
 					<LaunchSiteSummary v-bind:site="site" />
 				</li>
 			</ul>
@@ -35,7 +35,7 @@ export default {
 		fetchData() {
 			this.loading = true;
 
-			fetch("https://api.spacexdata.com/v3/launchpads")
+			fetch("https://api.spacexdata.com/v4/launchpads")
 				.then((response) => {
 					this.loading = false;
 					response.json().then((data) => {

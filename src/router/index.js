@@ -13,12 +13,12 @@ const routes = [
 		component: () => import("../views/ViewLaunch.vue"),
 	},
 	{
-		path: "/launch_sites",
+		path: "/launchpads",
 		name: "LaunchSites",
 		component: () => import("../views/LaunchSites.vue"),
 	},
 	{
-		path: "/launch_site/:id",
+		path: "/launchpad/:id",
 		name: "ViewLaunchSite",
 		component: () => import("../views/ViewLaunchSite.vue"),
 	},

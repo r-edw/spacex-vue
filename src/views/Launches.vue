@@ -55,16 +55,30 @@ export default {
 				return;
 			}
 
-			fetch(
-				`https://api.spacexdata.com/v3/launches/past?sort=flight_number&order=desc&limit=${this.limit}&offset=${this.offset}`
-			)
+			const requestOptions = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					options: {
+						offset: this.offset,
+						limit: this.limit,
+						sort: {
+							flight_number: -1,
+						},
+					},
+				}),
+			};
+
+			fetch(`https://api.spacexdata.com/v5/launches/query`, requestOptions)
 				.then((response) => {
 					response.json().then((data) => {
 						if (data.length < 10) {
 							this.end = true;
 						}
 
-						this.launches = [...this.launches, ...data];
+						console.log(data);
+
+						this.launches = [...this.launches, ...data.docs];
 						this.offset = this.offset + this.limit;
 						this.loading = false;
 						this.scroll(this.fetchData, this.loading);

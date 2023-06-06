@@ -35,7 +35,7 @@ export default {
 		fetchData() {
 			this.loading = true;
 
-			fetch("https://api.spacexdata.com/v3/rockets")
+			fetch("https://api.spacexdata.com/v4/rockets")
 				.then((response) => {
 					this.loading = false;
 					response.json().then((data) => {
